@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 
     /* Modify sizes */
     a = (double *)malloc(sizea*sizeof(double));
-    newa = (double *)malloc(loopend*sizeof(double));
+    newa = (double *)malloc(sizea*sizeof(double));
 
     /* Modify range of array to initialize */
     for (i = 1; i < sizea-1; i++)
@@ -60,12 +60,13 @@ int main(int argc, char *argv[])
         /* Let only rank 0 to print out its own data */
         if (myid == 0) {
 	    printf("Step %2d: ", j);
-       	    for (i = 0; i < N; i++)
+       	    for (i = 0; i < sizea; i++)
                 printf(" %6.2f", a[i]);
             printf("\n");
 	}
     }
 
+    // malloc 動的メモリの解放
     free(a);
     free(newa);
 
