@@ -1,13 +1,11 @@
-#!/bin/bash
-#PJM -L "vnode=4"
-#PJM -L "vnode-core=36"
-#PJM -L "rscunit=ito-a"
-#PJM -L "rscgrp=ito-s-dbg"
-#PJM -L "elapse=00:10:00"
+#!/bin/sh
+#PBS -l nodes=2:ppn=2
+#PBS -q Q1
+#PBS -j oe
 
-module load openmpi/3.1.1-nocuda-gcc4.8.5
-
-mpirun -np 4 -mca plm_rsh_agent /bin/pjrsh -machinefile ${PJM_O_NODEINF} ./test
+cd $PBS_O_WORKDIR
+mpirun -machinefile $PBS_NODEFILE -np 4 ./test
+exit 0 
 
 
 
